@@ -20,3 +20,4 @@ E:\CN\SOMETHINGDUMB\.NET GEMINI\GEMINI\obj\Debug\net8.0-windows\GEMINI.genruntim
 E:\CN\SOMETHINGDUMB\.NET GEMINI\GEMINI\obj\Debug\net8.0-windows\ref\GEMINI.dll
 E:\CN\SOMETHINGDUMB\.NET GEMINI\GEMINI\bin\Debug\net8.0-windows\Markdig.dll
 E:\CN\SOMETHINGDUMB\.NET GEMINI\GEMINI\bin\Debug\net8.0-windows\HtmlAgilityPack.dll
+E:\CN\SOMETHINGDUMB\.NET GEMINI\GEMINI\obj\Debug\net8.0-windows\GEMINI.sourcelink.json

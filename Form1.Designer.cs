@@ -1,10 +1,8 @@
-﻿//Form1.Designer.cs
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using Markdig;
 
 namespace GeminiChatbotApp
 {
@@ -14,6 +12,12 @@ namespace GeminiChatbotApp
         private const string API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent";
 
         private readonly HttpClient _httpClient;
+
+        private const string MAIN_TEMPLATE =
+            "You are a Vietnamese virtual assistant, you can answer anything that users ask and request." +
+            "Your answer summarizes the main ideas" +
+            "You will summarize the question and find the keywords and answer it." +
+            "Your answer is always in Vietnamese";
 
         public MainForm()
         {
@@ -65,7 +69,7 @@ namespace GeminiChatbotApp
             return generatedText;
         }
 
-        // Designer-generated InitializeComponent method would go here
+        // Designer-generated InitializeComponent method
         private void InitializeComponent()
         {
             this.txtChat = new System.Windows.Forms.TextBox();
@@ -88,6 +92,7 @@ namespace GeminiChatbotApp
             this.txtUserInput.Location = new System.Drawing.Point(12, 318);
             this.txtUserInput.Name = "txtUserInput";
             this.txtUserInput.Size = new System.Drawing.Size(379, 23);
+            this.txtUserInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserInput_KeyDown); // Add KeyDown event
 
             // 
             // btnSend
@@ -112,6 +117,15 @@ namespace GeminiChatbotApp
             this.Text = "Gemini Chatbot";
             this.ResumeLayout(false);
             this.PerformLayout();
+        }
+
+        private void txtUserInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSend_Click(this, new EventArgs());
+                e.SuppressKeyPress = true; // Prevents newline when pressing Enter
+            }
         }
 
         private System.Windows.Forms.TextBox txtChat;
