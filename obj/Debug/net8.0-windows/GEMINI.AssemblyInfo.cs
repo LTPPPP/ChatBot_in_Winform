@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GEMINI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec3a52d906a532e691dc4f077310c4b1e45a1d6a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d6126a2aed7365b88db364a4389af8a4744aa46")]
 [assembly: System.Reflection.AssemblyProductAttribute("GEMINI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GEMINI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

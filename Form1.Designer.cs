@@ -2,14 +2,15 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GEMINI;
 using Newtonsoft.Json;
-
 namespace GeminiChatbotApp
 {
     public partial class MainForm : Form
     {
-        private const string API_KEY = "";
-        private const string API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent";
+        config config = new config();
+        private const string API_KEY = config.API;
+        private const string API_URL = config.API_URL;
 
         private readonly HttpClient _httpClient;
 
@@ -31,7 +32,7 @@ namespace GeminiChatbotApp
             if (string.IsNullOrWhiteSpace(userInput))
                 return;
 
-            txtChat.AppendText($"You: {userInput}\r\n");
+            txtChat.AppendText($"You:{userInput}\r\n");
             txtUserInput.Clear();
 
             string response = await GetGeminiResponse(userInput);
@@ -48,7 +49,7 @@ namespace GeminiChatbotApp
                     {
                         parts = new[]
                         {
-                            new { text = userInput }
+                            new { text = MAIN_TEMPLATE+ userInput }
                         }
                     }
                 }
@@ -65,8 +66,17 @@ namespace GeminiChatbotApp
 
             // Parse the JSON response
             dynamic responseObject = JsonConvert.DeserializeObject(responseContent);
-            string generatedText = responseObject.candidates[0].content.parts[0].text;
-            return generatedText;
+            if (responseObject?.candidates != null && responseObject.candidates.Count > 0 &&
+                responseObject.candidates[0]?.content?.parts != null && responseObject.candidates[0].content.parts.Count > 0)
+            {
+                string generatedText = responseObject.candidates[0].content.parts[0].text;
+                return generatedText;
+            }
+            else
+            {
+                // Handle the case where the expected structure is not present
+                return "Unexpected response structure.";
+            }
         }
 
         // Designer-generated InitializeComponent method
